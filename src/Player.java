@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Player extends Cell {
     ArrayList<Pokemon> caught;
@@ -7,9 +11,9 @@ public class Player extends Cell {
 
     public Player(Coordinate coord) {
         super(coord);
-        caught = new ArrayList<Pokemon>();
+        caught = new ArrayList<>();
         numPokeball = 0;
-        path = new ArrayList<Coordinate>();
+        path = new ArrayList<>();
         path.add(coord);
     }
 
@@ -26,22 +30,25 @@ public class Player extends Cell {
     }
 
     public int score() {
-        //TODO
-        return 0;
-//        return numPokeball + 5 * caught.size() - path.size();
+        return numPokeball + 5 * caught.size() + 10 * (int) caught.stream().filter(distinctByKey(a -> a.getType())).count() + caught.stream().mapToInt(i -> i.getCombat()).sum() - path.size();
     }
 
     public String printScoreElement() {
-        //TODO
-        return "printScoreElement";
-//        return numPokeball + ":";
+        return numPokeball + ":" + caught.size() + ":" + caught.stream().filter(distinctByKey(a -> a.getType())).count() + ":" + caught.stream().mapToInt(i -> i.getCombat()).sum();
     }
 
     public String printPath() {
-        //TODO
-        return "path!";
-//        return null;
+        String sol = "";
+        for (var a :
+                path) {
+            sol += (a.printCoord() + "->");
+        }
+
+        return sol.substring(0, sol.length() - 2);
     }
 
-
+    private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+        return t -> ((ConcurrentHashMap) seen).putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+    }
 }

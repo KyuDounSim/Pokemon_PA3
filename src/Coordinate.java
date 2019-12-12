@@ -50,7 +50,7 @@ public class Coordinate {
         return new Coordinate(this.row + other.row, this.col + other.col);
     }
 
-    public void printCoord() {
-        System.out.print("<" + row + ", " + col + ">");
+    public String printCoord() {
+        return "<" + row + ", " + col + ">";
     }
 }
