@@ -1,7 +1,10 @@
+/**
+ * 
+ * Wall cell (no pass)
+ *
+ */
 public class Wall extends Cell {
-    boolean passable = false;
-
-    public Wall(Coordinate coord) {
-        super(coord);
-    }
+   public Wall(int row, int col) {
+      super(row, col);
+   }
 }

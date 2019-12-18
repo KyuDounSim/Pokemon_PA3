@@ -1,23 +1,29 @@
+/**
+ * 
+ * Station cell
+ *
+ */
 public class Station extends Cell {
-    private Coordinate coord;
-    private int providedBalls;
-    private boolean visited = false;
+	// Number of provided balls
+	private int supply;
+	
+	/**
+	 * Construct Station cell object
+	 * @param row - map row
+	 * @param col - map column
+	 */
+	public Station(int row, int col) { super(row, col); }
+	
+	/**
+	 * Returns number of balls that can station provide to player 
+	 * @return supply value
+	 */
+	public int getSupply() { return this.supply; }
 
-    public Station(Coordinate coord) {
-        super(coord);
-        providedBalls = 0;
-    }
-
-    public Station(Coordinate coord, int n) {
-        super(coord);
-        providedBalls = n;
-    }
-
-    public int getBallNum() {
-        return providedBalls;
-    }
-
-    public void setVisited(boolean status) {
-        visited = status;
-    }
+	/**
+	 * Setter for number of supply 
+	 * @param supply - new supply value
+	 */
+	public void setSupply(int supply) { this.supply = supply; }
+	
 }
