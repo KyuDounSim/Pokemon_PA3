@@ -78,14 +78,14 @@ public final class 	Player {
 	
 	/**
 	 * Check if pokemon in the caught set 
-	 * @param pokemon
+	 * @param pokemon pokemon to check if it is caught
 	 * @return true if poke in set false otherwise
 	 */
 	public boolean isPokeCaught(Pokemon pokemon) { return caughtPoke.contains(pokemon); }
 	
 	/**
 	 * Check if station in visited set
-	 * @param station
+	 * @param station station to check if it is visited
 	 * @return true if station in set false otherwise
 	 */
 	public boolean isStationVisited(Station station) { return visitedStations.contains(station); }

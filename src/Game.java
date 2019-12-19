@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ *  Game object that contains Map and optimal player.
+ *  Contains the main function.
+ */
 public class Game {
     // Game map
     private Map map;
@@ -146,44 +150,6 @@ public class Game {
         } finally {
             if (br != null) br.close();
         }
-    }
-
-    /**
-     * Randomly generate map. Randomly create map and write it in File
-     *
-     * @param inputFile - file to output map
-     */
-    private void randomMapGeneration(File inputFile) throws Exception {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(inputFile));
-		Random random = new Random();
-		var row = random.nextInt(5) + 5;
-		var col = random.nextInt(21) + 10;
-
-		var wallPercent = random.nextInt(20) + 70;
-
-		var startRow = random.nextInt(2);
-		var startCol = 0;
-		var destRow = random.nextInt(5) + 5;
-		var destCol  = random.nextInt(21) + 10;
-
-		if(startRow == 0) {
-
-		} else {
-
-		}
-
-		if(destRow == 0) {
-
-		} else {
-
-		}
-
-		var pokemonNum = random.nextInt(9) + 1;
-		var stationNum = random.nextInt(5) + 1;
-
-		bw.write(row + " " + col + "\n");
-
-		bw.close();
     }
 
     /**
@@ -391,28 +357,13 @@ public class Game {
      * Main function
      *
      * @param args - command line arguments
-     * @throws Exception
+     * @throws Exception - whenver the argument is wrong
      */
     public static void main(String[] args) throws Exception {
         File inputFile = new File("./sampleInput.txt");
         File outputFile = new File("./sampleOut.txt");
 
         if (args.length > 0) {
-
-            if (args[0].equals("random")) {
-                inputFile = new File("./randomInput.txt");
-                outputFile = new File("./randomOutput.txt");
-
-                Game randGame = new Game();
-                randGame.randomMapGeneration(inputFile);
-                if (randGame.map != null) {
-                    randGame.findPath();
-                    System.out.println("Random Done");
-                    randGame.saveRoute(outputFile);
-                }
-                return;
-            }
-
             inputFile = new File(args[0]);
         }
 
